@@ -43,7 +43,13 @@
       "ConstraintDescription": "must be a valid IP CIDR range of the form x.x.x.x/x."
     }
   },
-
+  
+  "Mappings": {
+    "RegionMap": {
+      "us-east-1": { "AMI" : "ami-9eaa1cf6" }
+    }
+  },
+  
   "Resources" : {
 
     "VPC" : {
