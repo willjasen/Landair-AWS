@@ -308,7 +308,7 @@
       "DependsOn" : "SplunkInstance",
       "Properties" : {
         "Handle" : {"Ref" : "SplunkWaitHandle"},
-        "Timeout" : "600"
+        "Timeout" : "3600"
       }
     }
   },
