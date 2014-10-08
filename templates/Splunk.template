@@ -215,6 +215,13 @@
           "config" : {
             "files" : {
 
+               "/opt/splunk.rpm" : {
+                "source"  : "https://s3.amazonaws.com/landair/CloudFormation/splunk-6.1.4-233537-linux-2.6-x86_64.rpm",
+                "mode"    : "000700",
+                "owner"   : "root",
+                "group"   : "root"
+              },
+              
               "/etc/cfn/cfn-hup.conf" : {
                 "content" : { "Fn::Join" : ["", [
                   "[main]\n",
@@ -237,6 +244,12 @@
                 ]]}
               }
             },
+            
+            "commands" : {
+              "install-splunk" : {
+                "command" : "rpm -i /opt/splunk.rpm"
+              }
+            }, 
 
             "services" : {
               "sysvinit" : {
@@ -253,6 +266,7 @@
         "InstanceType" : { "Ref" : "InstanceType" },
         "KeyName" : { "Ref" : "KeyName" },
         "Tags" : [ {"Key" : "Application", "Value" : { "Ref" : "AWS::StackId"} } ],
+        "PrivateIpAddress": "10.1.0.10",
         "UserData"       : { "Fn::Base64" : { "Fn::Join" : ["", [
           "#!/bin/bash\n",
           "yum update -y aws-cfn-bootstrap\n",
